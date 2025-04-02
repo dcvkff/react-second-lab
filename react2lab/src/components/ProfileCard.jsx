@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { Card, CardContent, Typography, Button, Avatar, Input } from "@mui/material";
+import { Card, CardContent, Typography, Button, Avatar, Input, Snackbar } from "@mui/material";
 import { Box } from "@mui/system";
 
 const ProfileCard = () => {
   const [image, setImage] = useState(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setImage(URL.createObjectURL(file));
+      setOpenSnackbar(true); // Показуємо повідомлення про успіх
     }
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
   };
 
   return (
@@ -36,10 +42,10 @@ const ProfileCard = () => {
       </Box>
       <CardContent>
         <Typography variant="h5" component="div" sx={{ fontWeight: "bold", color: "#3f51b5", textAlign: "center" }}>
-          Олександр
+          Андрій
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1, mb: 2, textAlign: "center" }}>
-          Привіт! Я Олександр, і я обожнюю подорожувати, читати книги та вивчати нові технології.
+          Привіт! Я Андрій, і я обожнюю подорожувати та вчити іноземні мови.
         </Typography>
 
         <Box display="flex" justifyContent="center" mt={2}>
@@ -61,6 +67,14 @@ const ProfileCard = () => {
           </Button>
         </Box>
       </CardContent>
+
+      {/* Snackbar для сповіщення про успіх */}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        message="Фото завантажено успішно!"
+      />
     </Card>
   );
 };
