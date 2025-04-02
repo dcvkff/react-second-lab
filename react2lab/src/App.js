@@ -1,14 +1,13 @@
-import React from "react";
-import CardList from "./components/CardList/CardList";
-import cardsData from "./data";
+import React from 'react';
+import './App.css';
+import ProfileCard from './components/ProfileCard';  // Імпортуємо компонент
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <h1 style={{ textAlign: "center" }}>Галерея карток</h1>
-      <CardList cards={cardsData} />
+    <div className="App">
+      <ProfileCard />  {/* Відображаємо картку профілю */}
     </div>
   );
-};
+}
 
 export default App;
